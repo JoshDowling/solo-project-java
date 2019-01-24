@@ -13,6 +13,7 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import com.qa.persistence.domain.Account;
+import com.qa.persistence.domain.Player;
 import com.qa.util.JSONUtil;
 
 @Transactional(SUPPORTS)
@@ -34,36 +35,52 @@ public class AccountDBRepository implements AccountRepository {
 
 	@Transactional(REQUIRED)
 	public String addAccount(String account) {
-		
 		Account anAccount = util.getObjectForJSON(account, Account.class);
-		
 		manager.persist(anAccount);
 		return "{\"message\": \"account has been successfully added\"}";
 	}
+	
 	@Transactional(REQUIRED)
-	public String updateAccount(Long id, String accountToUpdate, String toChange) {
-		Account updatedAccount = util.getObjectForJSON(accountToUpdate, Account.class);
-		Account accountFromDB = findAccount(id);
-		if (accountToUpdate != null) {
-			accountFromDB = updatedAccount;
-			manager.merge(accountToUpdate);
-		}
+	public String updateAccount(Long accountID, String account) {
+		Account theAccount = findAccount(accountID);
+		manager.remove(theAccount);
+		Account anAccount = util.getObjectForJSON(account,  Account.class);
+		manager.persist(anAccount);
 		return "{\"message\": \"account has ben successfully updated\"}";
 	}
 
+
 	@Transactional(REQUIRED)
-	public String deleteAccount(Long id) {
-		Account accountFromDB = findAccount(id);
+	public String deleteAccount(Long accountID) {
+		Account accountFromDB = findAccount(accountID);
 		if(accountFromDB != null) {
 			manager.remove(accountFromDB);
 		}
 		return "{\"message\": \"account has been successfully deleted\"}";
 	}
 	
-	public Account findAccount(Long id) {
-		return manager.find(Account.class, id);
+	public String addPlayer(String player) {
+		Player aPlayer = util.getObjectForJSON(player, Player.class);
+		manager.persist(aPlayer);
+		return "{\"message\": \"Player has been successfully added\"}";
+	}
+	
+	public String deletePlayer(Long id) {
+		Player playerFromDB = findPlayer(id);
+		if(playerFromDB != null) {
+			manager.remove(playerFromDB);
+		}
+		return "{\"message\": \"Player has been successfully deleted\"}";
+	}
+	
+	
+	public Account findAccount(Long accountID) {
+		return manager.find(Account.class, accountID);
 		}
 	
+	public Player findPlayer(Long id) {
+		return manager.find(Player.class, id);
+		}
 
 	public void setManager(EntityManager manager) {
 		this.manager = manager;
@@ -72,5 +89,7 @@ public class AccountDBRepository implements AccountRepository {
 	public void setUtil(JSONUtil util) {
 		this.util = util;
 	}
+
+	
 
 }

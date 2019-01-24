@@ -6,8 +6,12 @@ public interface ServiceInterface {
 
 	String addAccount(String account);
 
-	String updateAccount(Long id, String account);
+	String updateAccount(Long accountID, String account);
 
-	String deleteAccount(Long id);
+	String deleteAccount(Long accountID);
+	
+	String addPlayer(String player);
+	
+	String deletePlayer(Long id);
 
 }

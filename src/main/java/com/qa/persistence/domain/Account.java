@@ -19,10 +19,9 @@ public class Account {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private long accountID;
-	@Column(length=20)
 	private String username;
-	@Column(length=40)
 	private String password;
+	private String teamName;
 	
 	
     @OneToMany(
@@ -30,7 +29,7 @@ public class Account {
             fetch = FetchType.EAGER
     )
     @JoinColumn(name = "accountID")
-    private List<Team> team = new ArrayList<>();
+    private List<Player> player = new ArrayList<>();
 	
 	
 	public Account() {
@@ -38,12 +37,33 @@ public class Account {
 	}
 
 
-	public Account(long accountID, String username, String password, List<Team> team) {
+	public Account(long accountID, String username, String password, String teamName, List<Player> player) {
 		super();
 		this.accountID = accountID;
 		this.username = username;
 		this.password = password;
-		this.team = team;
+		this.teamName = teamName;
+		this.player = player;
+	}
+
+
+	public String getTeamName() {
+		return teamName;
+	}
+
+
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
+	}
+
+
+	public List<Player> getPlayer() {
+		return player;
+	}
+
+
+	public void setPlayer(List<Player> player) {
+		this.player = player;
 	}
 
 
@@ -74,16 +94,6 @@ public class Account {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-
-	public List<Team> getTeam() {
-		return team;
-	}
-
-
-	public void setTeam(List<Team> team) {
-		this.team = team;
 	}
 
 
