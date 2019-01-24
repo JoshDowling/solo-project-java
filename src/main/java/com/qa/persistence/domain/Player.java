@@ -1,19 +1,23 @@
 package com.qa.persistence.domain;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "PLAYER")
 public class Player {
 
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	private long id;
+	private long playerID;
 	private String firstName;
 	private String lastName;
 	private int age;
 	private String position;
-	private long accountID;
+	private long teamID;
 	
 	
 		public Player() {
@@ -21,21 +25,29 @@ public class Player {
 
 		public Player(long id, String firstName, String lastName, int age, String position, long accountID) {
 			super();
-			this.id = id;
+			this.playerID = id;
 			this.firstName = firstName;
 			this.lastName = lastName;
 			this.age = age;
 			this.position = position;
-			this.accountID = accountID;
+			this.teamID = accountID;
 		
 		}
+		
+		
+		public long getAccountID() {
+		return teamID;
+	}
 
+		public void setAccountID(long accountID) {
+		this.teamID = accountID;
+	}
 		public long getId() {
-			return id;
+			return playerID;
 		}
 
 		public void setId(long id) {
-			this.id = id;
+			this.playerID = id;
 		}
 
 		public String getFirstName() {

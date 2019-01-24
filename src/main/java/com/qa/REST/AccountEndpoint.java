@@ -25,7 +25,7 @@ public class AccountEndpoint {
 		return service.getAllAccounts();
 	}
 
-	@Path("/addAccounts")
+	@Path("/addAccount")
 	@POST
 	@Produces({ "application/json" })
 	public String addAccount(String account) {
@@ -45,6 +45,15 @@ public class AccountEndpoint {
 	public String deleteAccount(@PathParam("id") Long accountID) {
 		return service.deleteAccount(accountID);
 	}
+	
+	@Path("/addTeam")
+	@POST
+	@Produces({ "application/json" })
+	public String addTeam(String team) {
+		return service.addTeam(team);
+	}
+	
+	
 	
 	@Path("/addPlayer")
 	@POST

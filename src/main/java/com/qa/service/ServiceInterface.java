@@ -14,4 +14,7 @@ public interface ServiceInterface {
 	
 	String deletePlayer(Long id);
 
+	String addTeam(String team);
+
+	
 }
