@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.apache.log4j.Logger;
 
 import com.qa.persistence.domain.Account;
+import com.qa.persistence.domain.Player;
 import com.qa.persistence.repository.AccountRepository;
 import com.qa.util.JSONUtil;
 
@@ -14,10 +15,7 @@ public class ServiceImpl implements ServiceInterface{
 	
 	@Inject
 	private AccountRepository repo;
-	@Inject
-	private JSONUtil util;
 	
-
 
 	public String getAllAccounts() {
 		LOGGER.info("In AccountServiceImpl getAllAccounts ");
@@ -25,20 +23,28 @@ public class ServiceImpl implements ServiceInterface{
 	}
 
 	public String addAccount(String account) {
-		Account anAccount = util.getObjectForJSON(account, Account.class);
-		 return repo.addAccount(account);
+		return repo.addAccount(account);
 	}
 
-	public String updateAccount(Long id, String account) {
-		return repo.updateAccount(id, account, account);
+	public String updateAccount(Long accountID, String account) {
+		return repo.updateAccount(accountID, account);
 	}
  
-	public String deleteAccount(Long id) {
-		return repo.deleteAccount(id);
+	public String deleteAccount(Long accountID) {
+		return repo.deleteAccount(accountID);
 
 	}
 
 	public void setRepo(AccountRepository repo) {
 		this.repo = repo;
+	}
+
+	public String addPlayer(String player) {
+		return repo.addPlayer(player);
+		
+	}
+
+	public String deletePlayer(Long id) {
+		return repo.deletePlayer(id);
 	}
 }

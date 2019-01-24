@@ -13,17 +13,21 @@ public class Player {
 	private String lastName;
 	private int age;
 	private String position;
+	private long accountID;
+	
 	
 		public Player() {
 		}
 
-		public Player(long id, String firstName, String lastName, int age, String position) {
+		public Player(long id, String firstName, String lastName, int age, String position, long accountID) {
 			super();
 			this.id = id;
 			this.firstName = firstName;
 			this.lastName = lastName;
 			this.age = age;
 			this.position = position;
+			this.accountID = accountID;
+		
 		}
 
 		public long getId() {
