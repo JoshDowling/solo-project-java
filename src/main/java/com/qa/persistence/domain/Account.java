@@ -12,26 +12,28 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Account")
+@Table(name = "ACCOUNT")
 public class Account {
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private long accountID;
+	@Column(unique=true)
 	private String username;
+	
 	private String password;
-	private String teamName;
 	
-	
-    @OneToMany(
+		
+    @OneToOne(
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
     )
     @JoinColumn(name = "accountID")
-    private List<Player> player = new ArrayList<>();
+    private Team team;
 	
 	
 	public Account() {
@@ -44,28 +46,19 @@ public class Account {
 		this.accountID = accountID;
 		this.username = username;
 		this.password = password;
-		this.teamName = teamName;
-		this.player = player;
+		
+		
 	}
 
 
-	public String getTeamName() {
-		return teamName;
+	
+	public Team getTeam() {
+		return team;
 	}
 
 
-	public void setTeamName(String teamName) {
-		this.teamName = teamName;
-	}
-
-
-	public List<Player> getPlayer() {
-		return player;
-	}
-
-
-	public void setPlayer(List<Player> player) {
-		this.player = player;
+	public void setTeam(Team team) {
+		this.team = team;
 	}
 
 

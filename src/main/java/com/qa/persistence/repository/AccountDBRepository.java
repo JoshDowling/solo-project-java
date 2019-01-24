@@ -14,6 +14,7 @@ import javax.transaction.Transactional;
 
 import com.qa.persistence.domain.Account;
 import com.qa.persistence.domain.Player;
+import com.qa.persistence.domain.Team;
 import com.qa.util.JSONUtil;
 
 @Transactional(SUPPORTS)
@@ -59,12 +60,19 @@ public class AccountDBRepository implements AccountRepository {
 		return "{\"message\": \"account has been successfully deleted\"}";
 	}
 	
+	@Transactional(REQUIRED)
+	public String addTeam(String team) {
+		Team aTeam = util.getObjectForJSON(team, Team.class);
+		manager.persist(aTeam);
+		return "{\"message\": \"A team has been successfully added\"}";
+	}
+	@Transactional(REQUIRED)
 	public String addPlayer(String player) {
 		Player aPlayer = util.getObjectForJSON(player, Player.class);
 		manager.persist(aPlayer);
 		return "{\"message\": \"Player has been successfully added\"}";
 	}
-	
+	@Transactional(REQUIRED)
 	public String deletePlayer(Long id) {
 		Player playerFromDB = findPlayer(id);
 		if(playerFromDB != null) {

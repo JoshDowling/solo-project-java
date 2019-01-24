@@ -13,5 +13,7 @@ public interface AccountRepository {
 	String addPlayer(String player);
 	
 	String deletePlayer(Long id);
+	
+	String addTeam(String team);
 
 }

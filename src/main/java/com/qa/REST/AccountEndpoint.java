@@ -46,6 +46,15 @@ public class AccountEndpoint {
 		return service.deleteAccount(accountID);
 	}
 	
+	@Path("/addTeam")
+	@POST
+	@Produces({ "application/json" })
+	public String addTeam(String team) {
+		return service.addTeam(team);
+	}
+	
+	
+	
 	@Path("/addPlayer")
 	@POST
 	@Produces({ "application/json" })

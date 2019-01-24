@@ -1,3 +1,2 @@
-INSERT INTO ACCOUNT (accountid, username, password, teamname) VALUES (1, 'JohnDoe', 'password', 'test');
-
-INSERT INTO PLAYER (id, firstname, lastname, age, position, accountid) VALUES (1, 'John', 'Doe', 25, 'lineman', 1);
+INSERT INTO ACCOUNT (accountid, username, password) VALUES (1, 'JohnDoe', 'password');
+INSERT INTO TEAM (teamid, teamname, accountid) VALUES (1, 'testeam', 1);
