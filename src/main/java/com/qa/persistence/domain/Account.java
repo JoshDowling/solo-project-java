@@ -1,72 +1,90 @@
 package com.qa.persistence.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Account {
 
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
-	private long id;
+	private long accountID;
 	@Column(length=20)
-	private String firstName;
-	@Column(length=20)
-	private String secondName;
-	@Column(length=20)
-	private int accountNumber;
+	private String username;
+	@Column(length=40)
+	private String password;
+	
+	
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
+    )
+    @JoinColumn(name = "accountID")
+    private List<Team> team = new ArrayList<>();
+	
 	
 	public Account() {
 		
 	}
 
-	public Account(String firstName, String lastName, int accountNumber) {
+
+	public Account(long accountID, String username, String password, List<Team> team) {
 		super();
-		this.firstName = firstName;
-		this.secondName = lastName;
-		this.accountNumber = accountNumber;
-	}
-	
-	public long getId() {
-		return id;
+		this.accountID = accountID;
+		this.username = username;
+		this.password = password;
+		this.team = team;
 	}
 
 
-	public void setId(long id) {
-		this.id = id;
+	public long getAccountID() {
+		return accountID;
 	}
 
 
-
-	public String getFirstName() {
-		return firstName;
+	public void setAccountID(long accountID) {
+		this.accountID = accountID;
 	}
 
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public String getUsername() {
+		return username;
 	}
 
 
-	public String getSecondName() {
-		return secondName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 
-	public void setSecondName(String secondName) {
-		this.secondName = secondName;
+	public String getPassword() {
+		return password;
 	}
 
 
-	public int getAccountNumber() {
-		return accountNumber;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 
-	public void setAccountNumber(int accountNumber) {
-		this.accountNumber = accountNumber;
+	public List<Team> getTeam() {
+		return team;
 	}
+
+
+	public void setTeam(List<Team> team) {
+		this.team = team;
+	}
+
+
 }
