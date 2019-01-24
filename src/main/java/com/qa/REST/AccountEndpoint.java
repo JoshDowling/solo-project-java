@@ -25,7 +25,7 @@ public class AccountEndpoint {
 		return service.getAllAccounts();
 	}
 
-	@Path("/addAccounts")
+	@Path("/addAccount")
 	@POST
 	@Produces({ "application/json" })
 	public String addAccount(String account) {
