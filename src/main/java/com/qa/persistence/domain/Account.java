@@ -46,10 +46,8 @@ public class Account {
 		this.accountID = accountID;
 		this.username = username;
 		this.password = password;
-		
-		
+			
 	}
-
 
 	
 	public Team getTeam() {
