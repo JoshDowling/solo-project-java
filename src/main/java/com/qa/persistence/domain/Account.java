@@ -22,6 +22,7 @@ public class Account {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private long accountID;
+	private String name;
 	@Column(unique=true)
 	private String username;
 	
@@ -41,17 +42,26 @@ public class Account {
 	}
 
 
-	public Account(long accountID, String username, String password, String teamName, List<Player> player) {
+	public Account(long accountID, String username, String name, String password) {
 		super();
 		this.accountID = accountID;
+		this.name = name;
 		this.username = username;
 		this.password = password;
-		
-		
+			
+	}
+
+	
+	public String getName() {
+		return name;
 	}
 
 
-	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
 	public Team getTeam() {
 		return team;
 	}

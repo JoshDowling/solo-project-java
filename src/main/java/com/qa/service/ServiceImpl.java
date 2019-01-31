@@ -15,8 +15,6 @@ public class ServiceImpl implements ServiceInterface{
 	
 	@Inject
 	private AccountRepository repo;
-	@Inject
-	private JSONUtil util;
 
 	public String getAllAccounts() {
 		LOGGER.info("In AccountServiceImpl getAllAccounts ");
