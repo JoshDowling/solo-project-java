@@ -20,9 +20,10 @@ public class Team {
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	private long teamID;
+	private Long teamID;
 	private String teamName;
-	private long accountID;
+	private String location;
+	private Long accountID;
 	
 	
 //	  @OneToMany(
@@ -37,11 +38,21 @@ public class Team {
 	}
 
 
-	public Team(long teamID, String teamName, long accountID) {
-		super();
+	public Team(Long teamID, String teamName,String location, Long accountID) {
 		this.teamID = teamID;
 		this.teamName = teamName;
+		this.location = location;
 		this.accountID = accountID;
+	}
+
+
+	public String getLocation() {
+		return location;
+	}
+
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 
@@ -50,7 +61,7 @@ public class Team {
 	}
 
 
-	public void setTeamID(long teamID) {
+	public void setTeamID(Long teamID) {
 		this.teamID = teamID;
 	}
 
@@ -70,7 +81,7 @@ public class Team {
 	}
 
 
-	public void setAccountID(long accountID) {
+	public void setAccountID(Long accountID) {
 		this.accountID = accountID;
 	}
 	

@@ -53,7 +53,26 @@ public class AccountEndpoint {
 		return service.addTeam(team);
 	}
 	
-	
+	@Path("/getTeams")
+	@GET
+	@Produces({ "application/json" })
+	public String getAllTeams() {
+		return service.getAllTeams();
+	}
+
+	@Path("/updateTeam/{id}")
+	@PUT
+	@Produces({ "application/json" })
+	public String updateTeam(@PathParam("id") Long teamID, String team) {
+		return service.updateTeam(teamID, team);
+	}
+
+	@Path("/deleteTeam/{id}")
+	@DELETE
+	@Produces({ "application/json" })
+	public String deleteTeam(@PathParam("id") Long teamID) {
+		return service.deleteTeam(teamID);
+	}
 	
 	@Path("/addPlayer")
 	@POST
