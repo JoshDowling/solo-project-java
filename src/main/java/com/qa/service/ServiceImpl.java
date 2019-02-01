@@ -17,18 +17,15 @@ public class ServiceImpl implements ServiceInterface{
 	private AccountRepository repo;
 
 	public String getAllAccounts() {
-		LOGGER.info("In AccountServiceImpl getAllAccounts ");
+		LOGGER.info("In ServiceImpl getAllAccounts ");
 		return repo.getAllAccounts();
 	}
 
 	public String addAccount(String account) {
-//		Account anAccount = util.getObjectForJSON(account, Account.class);
-//		if (anAccount.getUsername().equals(Account)) {
-//			return "{\"message\": \"This Username is already in use\"}";
-//		}else 
+
 			return repo.addAccount(account);
 	}
-
+	@Override
 	public String updateAccount(Long accountID, String account) {
 		return repo.updateAccount(accountID, account);
 	}
@@ -53,5 +50,20 @@ public class ServiceImpl implements ServiceInterface{
 
 	public String deletePlayer(Long id) {
 		return repo.deletePlayer(id);
+	}
+
+	public String getAllTeams() {
+		LOGGER.info("In ServiceImpl getAllTeams ");
+		return repo.getAllTeams();
+		
+	}
+
+	public String updateTeam(Long teamID, String team) {
+		return repo.updateTeam(teamID, team);
+		
+	}
+
+	public String deleteTeam(Long teamID) {
+		return repo.deleteTeam(teamID);
 	}
 }

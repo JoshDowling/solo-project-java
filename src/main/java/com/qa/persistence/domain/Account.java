@@ -29,12 +29,12 @@ public class Account {
 	private String password;
 	
 		
-    @OneToOne(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
-    )
-    @JoinColumn(name = "accountID")
-    private Team team;
+//    @OneToOne(
+//            cascade = CascadeType.ALL,
+//            fetch = FetchType.EAGER
+//    )
+//    @JoinColumn(name = "accountID")
+//    private Team team;
 	
 	
 	public Account() {
@@ -43,7 +43,6 @@ public class Account {
 
 
 	public Account(long accountID, String username, String name, String password) {
-		super();
 		this.accountID = accountID;
 		this.name = name;
 		this.username = username;
@@ -62,14 +61,14 @@ public class Account {
 	}
 
 
-	public Team getTeam() {
-		return team;
-	}
-
-
-	public void setTeam(Team team) {
-		this.team = team;
-	}
+//	public Team getTeam() {
+//		return team;
+//	}
+//
+//
+//	public void setTeam(Team team) {
+//		this.team = team;
+//	}
 
 
 	public long getAccountID() {

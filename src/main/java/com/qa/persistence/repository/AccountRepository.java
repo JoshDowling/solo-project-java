@@ -15,5 +15,10 @@ public interface AccountRepository {
 	String deletePlayer(Long id);
 	
 	String addTeam(String team);
+	
+	String getAllTeams();
+	
+	String updateTeam(Long teamID, String team);
 
+	String deleteTeam(Long teamID);
 }

@@ -13,8 +13,14 @@ public interface ServiceInterface {
 	String addPlayer(String player);
 	
 	String deletePlayer(Long id);
-
+	
 	String addTeam(String team);
+	
+	String getAllTeams();
+	
+	String updateTeam(Long teamID, String team);
+
+	String deleteTeam(Long teamID);
 
 	
 }
