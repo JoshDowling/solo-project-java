@@ -87,6 +87,13 @@ public class AccountEndpoint {
 	public String deletePlayer(@PathParam("id") Long id) {
 		return service.deletePlayer(id);
 	}
+	
+	@Path("/login")
+	@POST
+	@Produces({ "application/json" })
+	public String login(String account) {
+		return service.login(account);
+	}
 
 	public void setService(ServiceInterface service) {
 		this.service = service;

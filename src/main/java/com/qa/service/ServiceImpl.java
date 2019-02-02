@@ -66,4 +66,10 @@ public class ServiceImpl implements ServiceInterface{
 	public String deleteTeam(Long teamID) {
 		return repo.deleteTeam(teamID);
 	}
+
+	@Override
+	public String login(String account) {
+		return repo.login(account);
+	}
+	
 }

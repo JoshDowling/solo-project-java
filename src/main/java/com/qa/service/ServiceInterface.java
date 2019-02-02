@@ -21,6 +21,8 @@ public interface ServiceInterface {
 	String updateTeam(Long teamID, String team);
 
 	String deleteTeam(Long teamID);
+	
+	String login(String account);
 
 	
 }

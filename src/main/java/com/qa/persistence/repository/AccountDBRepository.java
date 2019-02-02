@@ -137,6 +137,16 @@ public class AccountDBRepository implements AccountRepository {
 		this.util = util;
 	}
 
+	@Override
+	public String login(String account) {
+		Account anAccount = util.getObjectForJSON(account, Account.class);
+		String username = anAccount.getUsername();
+		String password = anAccount.getPassword();
+		Query query = manager.createQuery("Select username From Account a WHERE username='"+username+"' AND password ='"+password+"'");
+		Collection<Account> result = (Collection<Account>)query.getResultList();
+		return util.getJSONForObject(result);
+	}
+
 	
 
 }
