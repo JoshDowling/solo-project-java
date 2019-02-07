@@ -8,7 +8,7 @@ public interface AccountRepository {
 
 	String updateAccount(Long accountID, String account);
 
-	String deleteAccount(Long accountID);
+	String deleteAccount(String username);
 	
 	String addPlayer(String player);
 	
@@ -21,4 +21,6 @@ public interface AccountRepository {
 	String updateTeam(Long teamID, String team);
 
 	String deleteTeam(Long teamID);
+
+	String login(String account);
 }

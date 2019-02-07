@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.apache.log4j.Logger;
 
+import com.google.gson.Gson;
 import com.qa.persistence.domain.Account;
 import com.qa.persistence.domain.Player;
 import com.qa.persistence.repository.AccountRepository;
@@ -22,7 +23,13 @@ public class ServiceImpl implements ServiceInterface{
 	}
 
 	public String addAccount(String account) {
-
+		String accountUser=new Gson().fromJson(account, Account.class).getUsername();
+		String[] notAllowed = {"admin", "shit", "fuck", "arse", "undefined", "Brady","brady"};
+		for (String i: notAllowed) {
+			if (accountUser.contains(i)){
+			return "{\"message\": \""+accountUser+" not allowed, account not added.\"}";
+		} 
+		}
 			return repo.addAccount(account);
 	}
 	@Override
@@ -30,8 +37,8 @@ public class ServiceImpl implements ServiceInterface{
 		return repo.updateAccount(accountID, account);
 	}
  
-	public String deleteAccount(Long accountID) {
-		return repo.deleteAccount(accountID);
+	public String deleteAccount(String username) {
+		return repo.deleteAccount(username);
 
 	}
 	
@@ -66,4 +73,13 @@ public class ServiceImpl implements ServiceInterface{
 	public String deleteTeam(Long teamID) {
 		return repo.deleteTeam(teamID);
 	}
+
+	@Override
+	public String login(String account) {
+		if (account.contains("undefined")) {
+			return null;
+		}
+		return repo.login(account);
+	}
+	
 }

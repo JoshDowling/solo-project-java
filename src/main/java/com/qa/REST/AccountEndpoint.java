@@ -39,11 +39,11 @@ public class AccountEndpoint {
 		return service.updateAccount(accountID, account);
 	}
 
-	@Path("/deleteAccount/{id}")
+	@Path("/deleteAccount/{username}")
 	@DELETE
 	@Produces({ "application/json" })
-	public String deleteAccount(@PathParam("id") Long accountID) {
-		return service.deleteAccount(accountID);
+	public String deleteAccount(@PathParam("username") String username) {
+		return service.deleteAccount(username);
 	}
 	
 	@Path("/addTeam")
@@ -86,6 +86,13 @@ public class AccountEndpoint {
 	@Produces({ "application/json" })
 	public String deletePlayer(@PathParam("id") Long id) {
 		return service.deletePlayer(id);
+	}
+	
+	@Path("/login")
+	@POST
+	@Produces({ "application/json" })
+	public String login(String account) {
+		return service.login(account);
 	}
 
 	public void setService(ServiceInterface service) {

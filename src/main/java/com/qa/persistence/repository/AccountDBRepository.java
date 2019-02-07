@@ -57,8 +57,8 @@ public class AccountDBRepository implements AccountRepository {
 
 
 	@Transactional(REQUIRED)
-	public String deleteAccount(Long accountID) {
-		Account accountFromDB = findAccount(accountID);
+	public String deleteAccount(String username) {
+		Account accountFromDB = findAccountUsername(username);
 		if(accountFromDB != null) {
 			manager.remove(accountFromDB);
 		}
@@ -121,6 +121,13 @@ public class AccountDBRepository implements AccountRepository {
 		return manager.find(Account.class, accountID);
 		}
 	
+	public Account findAccountUsername(String username) {
+		Query query = manager.createQuery("Select accountID From Account a Where username = '"+username+"'");
+		Collection<Long> resultID = (Collection<Long>)query.getResultList();
+		Long accountID = resultID.stream().findFirst().get();
+		return findAccount(accountID);
+		}
+	
 	public Team findTeam(Long teamID) {
 		return manager.find(Team.class, teamID);
 		}
@@ -135,6 +142,16 @@ public class AccountDBRepository implements AccountRepository {
 
 	public void setUtil(JSONUtil util) {
 		this.util = util;
+	}
+
+	@Override
+	public String login(String account) {
+		Account anAccount = util.getObjectForJSON(account, Account.class);
+		String username = anAccount.getUsername();
+		String password = anAccount.getPassword();
+		Query query = manager.createQuery("Select username From Account a WHERE username='"+username+"' AND password ='"+password+"'");
+		Collection<Account> result = (Collection<Account>)query.getResultList();
+		return util.getJSONForObject(result);
 	}
 
 	
