@@ -8,7 +8,7 @@ public interface AccountRepository {
 
 	String updateAccount(Long accountID, String account);
 
-	String deleteAccount(Long accountID);
+	String deleteAccount(String username);
 	
 	String addPlayer(String player);
 	

@@ -57,8 +57,8 @@ public class AccountDBRepository implements AccountRepository {
 
 
 	@Transactional(REQUIRED)
-	public String deleteAccount(Long accountID) {
-		Account accountFromDB = findAccount(accountID);
+	public String deleteAccount(String username) {
+		Account accountFromDB = findAccountUsername(username);
 		if(accountFromDB != null) {
 			manager.remove(accountFromDB);
 		}
@@ -119,6 +119,13 @@ public class AccountDBRepository implements AccountRepository {
 	
 	public Account findAccount(Long accountID) {
 		return manager.find(Account.class, accountID);
+		}
+	
+	public Account findAccountUsername(String username) {
+		Query query = manager.createQuery("Select accountID From Account a Where username = '"+username+"'");
+		Collection<Long> resultID = (Collection<Long>)query.getResultList();
+		Long accountID = resultID.stream().findFirst().get();
+		return findAccount(accountID);
 		}
 	
 	public Team findTeam(Long teamID) {

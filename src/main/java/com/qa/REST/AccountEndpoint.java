@@ -39,11 +39,11 @@ public class AccountEndpoint {
 		return service.updateAccount(accountID, account);
 	}
 
-	@Path("/deleteAccount/{id}")
+	@Path("/deleteAccount/{username}")
 	@DELETE
 	@Produces({ "application/json" })
-	public String deleteAccount(@PathParam("id") Long accountID) {
-		return service.deleteAccount(accountID);
+	public String deleteAccount(@PathParam("username") String username) {
+		return service.deleteAccount(username);
 	}
 	
 	@Path("/addTeam")
