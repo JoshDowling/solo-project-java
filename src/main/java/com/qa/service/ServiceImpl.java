@@ -32,9 +32,8 @@ public class ServiceImpl implements ServiceInterface{
 		}
 			return repo.addAccount(account);
 	}
-	@Override
-	public String updateAccount(Long accountID, String account) {
-		return repo.updateAccount(accountID, account);
+	public String updateAccount(String username, String account) {
+		return repo.updateAccount(username, account);
 	}
  
 	public String deleteAccount(String username) {

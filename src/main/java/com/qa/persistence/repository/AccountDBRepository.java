@@ -43,16 +43,16 @@ public class AccountDBRepository implements AccountRepository {
 	public String addAccount(String account) {
 		Account anAccount = util.getObjectForJSON(account, Account.class);
 		manager.persist(anAccount);
-		return "{\"message\": \"account has been successfully added\"}";
+		return "{\"message\": \"Account has been successfully added\"}";
 	}
 	
 	@Transactional(REQUIRED)
-	public String updateAccount(Long accountID, String account) {
-		Account theAccount = findAccount(accountID);
+	public String updateAccount(String username, String account) {
+		Account theAccount = findAccountUsername(username);
 		manager.remove(theAccount);
 		Account anAccount = util.getObjectForJSON(account,  Account.class);
 		manager.persist(anAccount);
-		return "{\"message\": \"account has ben successfully updated\"}";
+		return "{\"message\": \"Account has ben successfully updated\"}";
 	}
 
 
@@ -62,7 +62,7 @@ public class AccountDBRepository implements AccountRepository {
 		if(accountFromDB != null) {
 			manager.remove(accountFromDB);
 		}
-		return "{\"message\": \"account has been successfully deleted\"}";
+		return "{\"message\": \"Account has been successfully deleted\"}";
 	}
 	
 	public String getAllTeams() {
@@ -76,7 +76,7 @@ public class AccountDBRepository implements AccountRepository {
 	public String addTeam(String team) {
 		Team aTeam = util.getObjectForJSON(team, Team.class);
 		manager.persist(aTeam);
-		return "{\"message\": \"A team has been successfully added\"}";
+		return "{\"message\": \"Team has been successfully added\"}";
 	}
 	@Override
 	@Transactional(REQUIRED)
@@ -88,7 +88,7 @@ public class AccountDBRepository implements AccountRepository {
 			manager.persist(aTeam);
 			return "{\"message\": \"Team has been successfully updated\"}";
 		}
-		return "{\"message\": \"Team has been not successfully updated\"}";
+		return "{\"message\": \"Team has not been updated\"}";
 	}
 	
 	
