@@ -24,10 +24,10 @@ public class ServiceImpl implements ServiceInterface{
 
 	public String addAccount(String account) {
 		String accountUser=new Gson().fromJson(account, Account.class).getUsername();
-		String[] notAllowed = {"admin", "shit", "fuck", "arse", "undefined", "Brady","brady"};
+		String[] notAllowed = {"admin", "undefined", "Brady", "brady", "patriots", "Patriots", "G.O.A.T"};
 		for (String i: notAllowed) {
 			if (accountUser.contains(i)){
-			return "{\"message\": \""+accountUser+" not allowed, account not added.\"}";
+			return "{\"message\": \""+accountUser+" is not allowed, account not added.\"}";
 		} 
 		}
 			return repo.addAccount(account);

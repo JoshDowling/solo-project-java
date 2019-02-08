@@ -52,7 +52,7 @@ public class AccountDBRepository implements AccountRepository {
 		manager.remove(theAccount);
 		Account anAccount = util.getObjectForJSON(account,  Account.class);
 		manager.persist(anAccount);
-		return "{\"message\": \"Account has ben successfully updated\"}";
+		return "{\"message\": \"Account has been successfully updated\"}";
 	}
 
 
