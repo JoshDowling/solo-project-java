@@ -32,11 +32,11 @@ public class AccountEndpoint {
 		return service.addAccount(account);
 	}
 
-	@Path("/updateAccount/{id}")
+	@Path("/updateAccount/{username}")
 	@PUT
 	@Produces({ "application/json" })
-	public String updateAccount(@PathParam("id") Long accountID, String account) {
-		return service.updateAccount(accountID, account);
+	public String updateAccount(@PathParam("username") String username, String account) {
+		return service.updateAccount(username, account);
 	}
 
 	@Path("/deleteAccount/{username}")
